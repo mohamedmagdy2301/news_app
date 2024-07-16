@@ -10,7 +10,7 @@ class GetAllNewsService {
   Future<dynamic> request(String category) async {
     try {
       Response response =
-          await dio.get("$baseUrl&category=$category&apiKey=$apiKeyValue2");
+          await dio.get("$baseUrl&category=$category&apiKey=$apiKeyValue");
       if (response.statusCode == 200) {
         List<dynamic> articles = response.data['articles'];
         List<ArticalModel> articalList = [];

@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/api/get_news_service_api.dart';
 import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/screen/details_news.dart';
-import 'package:news_app/widget/recent_news_card.dart';
+import 'package:news_app/widget/lastest_news/recent_news_card.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HorizontalListRecentNews extends StatefulWidget {
   const HorizontalListRecentNews({super.key});
@@ -17,13 +19,25 @@ class _HorizontalListRecentNewsState extends State<HorizontalListRecentNews> {
   @override
   void initState() {
     super.initState();
-
     getArticalListAllNews();
+    for (int i = 0; i < articalList.length; i++) {
+      loadImage(articalList[i].urlToImage!);
+    }
+  }
+
+  Future<void> loadImage(String imageUrl) async {
+    try {
+      await precacheImage(NetworkImage(imageUrl), context);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> getArticalListAllNews() async {
+    // Future.delayed(const Duration(seconds: 2), () async {
     articalList = await GetAllNewsService().request("general");
     setState(() {});
+    // });
   }
 
   @override
@@ -73,15 +87,27 @@ class _HorizontalListRecentNewsState extends State<HorizontalListRecentNews> {
               child: SizedBox(
                 height: 300,
                 child: articalList.isEmpty
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        itemCount: 5,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => RecentNewsCard(
-                          articalList: articalList,
-                          index: index,
+                    ? Shimmer.fromColors(
+                        baseColor: const Color.fromARGB(255, 175, 175, 175),
+                        highlightColor: Colors.white,
+                        enabled: true,
+                        period: const Duration(seconds: 2),
+                        child: ListView.builder(
+                          itemCount: 10,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 13),
+                            padding: const EdgeInsets.all(13),
+                            width: 290,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
                         ),
-                      ),
+                      )
+                    : RecentNewsCard(articalList: articalList),
               ),
             ),
           ],

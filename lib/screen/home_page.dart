@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widget/horizontal_list_recent_news.dart';
-import 'package:news_app/widget/news_list.dart';
-import 'package:news_app/widget/search_news_build.dart';
-import 'package:news_app/widget/tab_bar_build.dart';
+import 'package:news_app/widget/all_news/news_list.dart';
+import 'package:news_app/widget/all_news/tab_bar_build.dart';
+import 'package:news_app/widget/lastest_news/horizontal_list_recent_news.dart';
+import 'package:news_app/widget/search/search_news_build.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

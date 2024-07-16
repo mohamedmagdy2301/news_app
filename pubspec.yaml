@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   dio: ^5.5.0+1
   splash_screen_view: ^3.0.0
+  shimmer: ^3.0.0
+  cached_network_image: ^3.3.1
+  fast_cached_network_image: ^1.2.9
 
 dev_dependencies:
   flutter_test:

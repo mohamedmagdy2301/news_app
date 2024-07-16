@@ -3,7 +3,7 @@ import 'package:news_app/screen/home_page.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 void main() {
-  // GetAllNewsService().request();
+  // CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
   runApp(const MyApp());
 }
 
