@@ -16,4 +16,16 @@ class ArticalModel {
     required this.author,
     required this.publishedAt,
   });
+
+  factory ArticalModel.fromJson(Map<String, dynamic> json) {
+    return ArticalModel(
+      content: json["content"],
+      author: json["author"],
+      title: json['title'],
+      description: json["description"],
+      url: json["url"],
+      urlToImage: json["urlToImage"],
+      publishedAt: json["publishedAt"],
+    );
+  }
 }

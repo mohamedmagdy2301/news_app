@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/get_news_service_api.dart';
 import 'package:news_app/models/artical_model.dart';
-import 'package:news_app/widget/all_news/news_card_build.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:news_app/widget/all_news/Shimmer/shimmer_list_news_build.dart';
+import 'package:news_app/widget/all_news/news_all_card.dart';
 
 class NewsListViewBuild extends StatefulWidget {
   const NewsListViewBuild({super.key, required this.requestType});
@@ -13,42 +13,27 @@ class NewsListViewBuild extends StatefulWidget {
 }
 
 class _NewsListViewBuildState extends State<NewsListViewBuild> {
-  List<ArticalModel> articalList = [];
+  Future<List<ArticalModel>>? future;
   @override
   void initState() {
     super.initState();
 
-    getArticalListAllNews();
-  }
-
-  Future<void> getArticalListAllNews() async {
-    articalList = await GetAllNewsService().request(widget.requestType);
-
-    setState(() {});
+    future = GetAllNewsService().request(widget.requestType);
   }
 
   @override
   Widget build(BuildContext context) {
-    return articalList.isEmpty
-        ? Shimmer.fromColors(
-            baseColor: const Color.fromARGB(255, 175, 175, 175),
-            highlightColor: Colors.white,
-            enabled: true,
-            direction: ShimmerDirection.ltr,
-            period: const Duration(seconds: 2),
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) => Container(
-                margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.all(13),
-                height: 190,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
-            ),
-          )
-        : NewsCardBuild(articalList: articalList);
+    return FutureBuilder<List<ArticalModel>>(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return const ShimmerListNewsBuild();
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        } else {
+          return NewsAllCard(snapshot: snapshot.data!);
+        }
+      },
+    );
   }
 }
