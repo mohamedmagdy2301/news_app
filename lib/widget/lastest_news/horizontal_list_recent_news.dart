@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/api/get_news_service_api.dart';
 import 'package:news_app/models/artical_model.dart';
