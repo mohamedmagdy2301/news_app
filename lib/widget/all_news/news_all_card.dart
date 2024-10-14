@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/models/artical_model.dart';
-import 'package:news_app/widget/all_news/Shimmer/shimmer_placeholder_news.dart';
 import 'package:news_app/widget/all_news/news_card_build.dart';
 
 class NewsAllCard extends StatelessWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widget/lastest_news/recent_news_all_card.dart';
 import 'package:news_app/widget/lastest_news/recent_news_card_build.dart';
 
 class RecentNewsListBuild extends StatelessWidget {

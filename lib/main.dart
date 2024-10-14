@@ -16,14 +16,14 @@ class MyApp extends StatelessWidget {
       home: SplashScreenView(
         navigateRoute: const HomePage(),
         duration: 2000,
-        imageSize: 280,
+        imageSize: 240,
         imageSrc: "assets/splash.png",
         backgroundColor: const Color.fromARGB(255, 255, 253, 244),
         text: "News",
         // speed: 770,
         textType: TextType.ColorizeAnimationText,
         textStyle: const TextStyle(
-          fontSize: 110,
+          fontSize: 90,
           fontWeight: FontWeight.bold,
           fontFamily: "PlaywriteDKUloopet",
         ),

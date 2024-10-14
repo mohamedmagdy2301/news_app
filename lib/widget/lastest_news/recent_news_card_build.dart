@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/models/artical_model.dart';
 import 'package:news_app/widget/lastest_news/shimmer/shimmer_placeholder_recent_news.dart';
 
 class RecentNewsCard extends StatelessWidget {
